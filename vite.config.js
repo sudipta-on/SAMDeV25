@@ -8,4 +8,5 @@ export default defineConfig({
   plugins: [    tailwindcss(),
 react()],
   outDir: "build",
+  base: "/SAMDeV25/"
 })
