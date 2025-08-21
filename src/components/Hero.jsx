@@ -71,7 +71,7 @@ export default function Hero() {
                   <MapPin className="h-5 w-5" />
                   <div>
                     <div className="text-sm text-zinc-500 dark:text-zinc-400">Venue</div>
-                    <div className="font-semibold">IIT Kharagpur, India</div>
+                    <div className="font-semibold">Bose Institute Conference Hall</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 rounded-2xl border border-zinc-200 dark:border-zinc-800 backdrop-blur-sm p-4">

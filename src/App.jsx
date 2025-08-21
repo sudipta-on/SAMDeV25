@@ -56,18 +56,18 @@ export default function App() {
   }, []);
 
   const notices = [
-    "Abstracts open Jul 15 · Full paper deadline Sep 10",
-    "Early-bird registration closes Oct 05",
+    "Paper Submission deadline Sep 20",
+    "Registration Opens Oct 01",
+    "Registration Closes Oct 20",
     "Limited travel grants for students",
-    "Hybrid: On-site in Bengaluru + Virtual access",
   ];
 
   return (
     <div className={theme === "dark" ? "dark" : "light"}>
       <GlobalStyles />
-      <ParticlesBackground theme={theme}/>
       <div className="min-h-screen bg-gradient-to-b from-white to-zinc-50 dark:from-[#0a0a0a] dark:to-black text-zinc-900 dark:text-zinc-50">
             <ThemeProvider>
+      <ParticlesBackground />
         <NoticeBar items={notices} />
         <Navbar active={active} onLinkClick={scrollToId} theme={theme} setTheme={setTheme} />
         <main className="relative">

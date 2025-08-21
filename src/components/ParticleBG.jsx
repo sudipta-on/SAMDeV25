@@ -6,37 +6,32 @@ export default function ParticlesBackground() {
   const canvasRef = useRef(null);
   const particles = useRef([]);
   const mouse = useRef({ x: null, y: null });
-  const theme = useTheme();
-  const themeRef = useRef(theme);
-
-  // Keep themeRef updated for animation loop
-  useEffect(() => {
-    themeRef.current = theme;
-  }, [theme]);
+  const { theme } = useTheme(); // get current theme directly
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d"); // use 2d, not 3d
+    const ctx = canvas.getContext("2d");
 
+    // Initialize particles
+    const initParticles = () => {
+      const count = Math.floor(window.innerWidth / 12);
+      particles.current = Array.from({ length: count }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + (window.innerWidth < 600 ? 1 : 2),
+      }));
+    };
+
+    // Resize canvas
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initParticles();
     };
-
-    const initParticles = () => {
-      const count = Math.floor(window.innerWidth / 12); // responsive density
-      particles.current = Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        radius: Math.random() * 2 + (window.innerWidth < 600 ? 1 : 2),
-      }));
-    };
-
-    resize();
     window.addEventListener("resize", resize);
+    resize();
 
     // Mouse tracking
     const handleMove = (e) => {
@@ -54,17 +49,20 @@ export default function ParticlesBackground() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const color = themeRef.current === "dark" ? "#10d70cff" : "#566d8aff";
+      // Use the latest theme for color
+      const particleColor = theme === "dark" ? "#4c507aff" : "#566d8aff";
+      const lineColor =
+        theme === "dark" ? "rgba(83, 78, 104, 0.2)" : "rgba(15,28,46,0.2)";
 
       particles.current.forEach((p, i) => {
-        // movement
+        // Move particle
         p.x += p.vx;
         p.y += p.vy;
 
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-        // hover distortion
+        // Hover repulsion
         if (mouse.current.x && mouse.current.y) {
           const dx = p.x - mouse.current.x;
           const dy = p.y - mouse.current.y;
@@ -76,13 +74,13 @@ export default function ParticlesBackground() {
           }
         }
 
-        // draw particle
+        // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = color;
+        ctx.fillStyle = particleColor;
         ctx.fill();
 
-        // link nearby particles
+        // Connect nearby particles
         for (let j = i + 1; j < particles.current.length; j++) {
           const p2 = particles.current[j];
           const dx = p.x - p2.x;
@@ -91,10 +89,7 @@ export default function ParticlesBackground() {
 
           if (dist < 120) {
             ctx.beginPath();
-            ctx.strokeStyle =
-              themeRef.current === "dark"
-                ? "rgba(0,0,0,0.2)"
-                : "rgba(15,28,46,0.2)";
+            ctx.strokeStyle = lineColor;
             ctx.lineWidth = 0.5;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -113,9 +108,7 @@ export default function ParticlesBackground() {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("mouseleave", handleLeave);
     };
-  }, []);
+  }, [theme]); // re-run if theme changes
 
-  return (
-    <canvas ref={canvasRef} className="fixed inset-0 w-full h-full z-0" />
-  );
+  return <canvas ref={canvasRef} className="fixed inset-0 w-full h-full z-0" />;
 }
