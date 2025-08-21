@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sudipta-on.github.io/SAMDev25",
+  "homepage": "https://sudipta-on.github.io/SAMDeV25",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
