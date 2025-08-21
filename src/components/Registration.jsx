@@ -1,6 +1,6 @@
 // src/components/RegistrationSection.jsx
 import { useTheme } from "/src/components/ThemeContext";
-import BackgroundOrbs from "/src/components/BackgroundOrbs";
+// import BackgroundOrbs from "/src/components/BackgroundOrbs";
 import { motion } from "framer-motion";
 
 export default function RegistrationSection() {
@@ -40,9 +40,9 @@ export default function RegistrationSection() {
   ];
 
   return (
-    <section id="registration" className="relative py-16 sm:py-20 overflow-x-hidden">
-      <BackgroundOrbs />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="registration" className="relative py-16 sm:py-20 ">
+      {/* <BackgroundOrbs /> */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6" >
         <h2
           className={`text-center text-3xl sm:text-4xl font-bold tracking-tight ${
             theme === "light" ? "text-red-600" : "text-blue-600"
