@@ -1,0 +1,36 @@
+{
+  "Day 1": [
+    {
+      "time": "09:00 - 10:00",
+      "title": "Inauguration & Welcome Address",
+      "speaker": "Prof. A. B. Sharma"
+    },
+    {
+      "time": "10:15 - 11:00",
+      "title": "Keynote: Advances in Quantum Materials",
+      "speaker": "Dr. Jane Doe"
+    },
+    {
+      "time": "11:15 - 12:30",
+      "title": "Technical Session I",
+      "speaker": "Chair: Prof. X. Y. Singh"
+    }
+  ],
+  "Day 2": [
+    {
+      "time": "09:30 - 10:30",
+      "title": "Plenary Lecture: Smart Materials for Energy",
+      "speaker": "Dr. John Smith"
+    },
+    {
+      "time": "10:45 - 12:00",
+      "title": "Technical Session II",
+      "speaker": "Chair: Dr. M. Patel"
+    },
+    {
+      "time": "14:00 - 16:00",
+      "title": "Poster Presentations",
+      "speaker": "Student Researchers"
+    }
+  ]
+}
