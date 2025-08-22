@@ -102,7 +102,7 @@ export default function SponsorsSection() {
           <h3 className="text-2xl font-semibold text-center text-sky-500">
             Platinum Sponsors
           </h3>
-          <div className="mt-6">
+          <div className="mt-6 overflow-x-hidden">
             <SponsorScroller items={sponsors.Platinum} />
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function SponsorsSection() {
           <h3 className="text-2xl font-semibold text-center text-yellow-500">
             Gold Sponsors
           </h3>
-          <div className="mt-4">
+          <div className="mt-4 overflow-x-hidden">
             <SponsorScroller items={sponsors.Gold} />
           </div>
         </div>
